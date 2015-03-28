@@ -160,7 +160,7 @@ function getLatestPings () {
 	
 	var request = new XMLHttpRequest ();
 	
-	request.open ( "GET", "pings.json?latest=100" );
+	request.open ( "GET", "pings.json?latest=50" );
 	
 	request.onload = gotPings;
 	
