@@ -1,5 +1,5 @@
 cat logs/pings.txt \
-| grep google \
+| grep -v '192\.168' \
 | awk '
 	
 	BEGIN {
@@ -24,4 +24,8 @@ cat logs/pings.txt \
 		
 	}
 	
-'
+' \
+| grep -vE '(0|1|1[0-9]|4[0-9]|5[0-9]|6[0-9]) seconds' \
+> report.txt
+
+less report.txt

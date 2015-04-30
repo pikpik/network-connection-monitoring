@@ -7,7 +7,7 @@ logFile="$logFolder/pings.txt"
 
 monitorAddress () {
 	
-	ping -i $secondsBetweenPings $1
+	ping -c 1 $1
 	
 }
 
@@ -77,20 +77,29 @@ touch $logFile
 
 {
 	
-	# Verizon router
-	monitorAddress 192.168.1.1 &
+	while true
 	
-	# Sunny
-	monitorAddress 192.168.1.2 &
-	
-	# Timey
-	monitorAddress 192.168.1.3 &
-	
-	# Cloudy
-	monitorAddress 192.168.1.4 &
-	
-	# Google.com
-	monitorAddress google.com &
+	do
+		
+		# Verizon router
+		monitorAddress 192.168.1.1 &
+		
+		# Sunny
+		monitorAddress 192.168.1.2 &
+		
+		# Timey
+		monitorAddress 192.168.1.3 &
+		
+		# Cloudy
+		monitorAddress 192.168.1.4 &
+		
+		# Google.com
+		monitorAddress google.com &
+		
+		# Wait a minute (literally? :P)
+		sleep $secondsBetweenPings
+		
+	done
 	
 } \
 | reformat \
